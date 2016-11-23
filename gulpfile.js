@@ -1,21 +1,21 @@
-var gulp = require('gulp');
-var webpack = require('gulp-webpack');
-var webpack_config = require('./webpack.config');
-var htmlmin = require('gulp-htmlmin');
+const gulp = require('gulp');
+const webpack = require('gulp-webpack');
+const config = require('./webpack.config');
+const htmlmin = require('gulp-htmlmin');
+const rimraf = require('rimraf');
 
-gulp.task('cleanBuild', function (clean_build) {
-  var rimraf = require('rimraf');
-  rimraf('./build', clean_build);
+gulp.task('clean_dist', function (clean_build) {
+  rimraf('./dist', clean_build);
 });
 
-gulp.task('copyHtml', function () {
+gulp.task('minify-html', ['clean_dist'], function () {
   return gulp.src('./src/index.html')
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('build', ['cleanBuild', 'copyHtml'], function (copy_index) {
+gulp.task('build', ['minify-html'], function () {
   return gulp.src('')
-    .pipe(webpack(webpack_config))
+    .pipe(webpack(config))
     .pipe(gulp.dest(''));
 });
