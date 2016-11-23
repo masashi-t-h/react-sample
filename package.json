@@ -23,7 +23,6 @@
     "gulp": "^3.9.1",
     "gulp-htmlmin": "^3.0.0",
     "gulp-webpack": "^1.5.0",
-    "htmlmin": "0.0.7",
     "rimraf": "^2.5.4",
     "webpack": "^1.13.3"
   }
